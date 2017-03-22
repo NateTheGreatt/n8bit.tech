@@ -19,7 +19,9 @@ export default {
         <li><nuxt-link to="/portfolio">Portfolio</nuxt-link></li>
       </ul>
       <ul class="nav navbar-nav pull-right social">
-        <a href="https://www.github.com/NateTheGreatt" target="_blank" class="btn btn-social-icon btn-github"><span class="fa fa-github"></span></a>
+        <li><a href="https://www.soundcloud.com/vyjl" target="_blank" class="btn btn-social-icon btn-soundcloud"><span class="fa fa-soundcloud"></span></a></li>
+        <li><a href="https://www.linkedin.com/in/nathaniel-martin-865b1444/" target="_blank" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+        <li><a href="https://www.github.com/NateTheGreatt" target="_blank" class="btn btn-social-icon btn-github"><span class="fa fa-github"></span></a></li>
       </ul>
     </div>
   </nav>
