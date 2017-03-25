@@ -16,8 +16,9 @@ export default function (canvas, audio, options) {
   splitter.connect(analyser1, 0, 0)
   splitter.connect(analyser2, 1, 0)
 
-  analyser1.fftSize = 4096 * 2 // must be power of two
-  analyser2.fftSize = 4096 * 2 // and max of 32768
+  var fttSize = Math.pow(2, 12) // must be power of two and max of 32768 (2^15)
+  analyser1.fftSize = fttSize
+  analyser2.fftSize = fttSize
 
   var binCount = analyser1.frequencyBinCount
   var wave1 = new Float32Array(binCount)

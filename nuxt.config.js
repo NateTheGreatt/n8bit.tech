@@ -23,8 +23,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~assets/css/main.css',
-    '~assets/css/bootstrap-social.css'
+    '~assets/css/main.css'
   ],
   /*
   ** Customize the progress-bar color
@@ -47,5 +46,10 @@ module.exports = {
         })
       }
     }
+  },
+  generate: {
+  },
+  router: {
+    middleware: 'marked'
   }
 }

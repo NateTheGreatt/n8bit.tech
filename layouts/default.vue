@@ -22,6 +22,15 @@ export default {
 
 <style>
 #__nuxt {
-  /*margin-top: 15px;*/
+  margin-top: 100px;
+}
+section h1 {
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  font-size: 24px;
+}
+section h2 {
+  font-size: 18px;
 }
 </style>

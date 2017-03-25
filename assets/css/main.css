@@ -1,4 +1,4 @@
-html, body
+/*html, body
 {
   background-color: #18191B;
   color: #2e2f30;
@@ -14,14 +14,14 @@ html, body
 
 a:hover, a:focus, a:visited
 {
-  /*color: #fff;*/
+  /*color: #fff;*
   text-decoration: none;
 }
 
 h1 {
   color: #ccc;
 }
-
+*/
 .page-enter-active, .page-leave-active
 {
   transition: opacity .2s

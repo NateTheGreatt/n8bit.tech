@@ -1,19 +1,20 @@
+<template>
+  <section class="container" v-html="html"></section>
+</template>
 <script>
-export default {
 
+export default {
+  data (context) {
+    return { route: context.route, html: context.html }
+  },
+  head () {
+    return {
+      title: this.route.name
+    }
+  }
 }
 </script>
 
-<template>
-  <section class="container">
-    <h1 class="title">
-      Home
-    </h1>
-  </section>
-</template>
-
 <style scoped>
-
-
 
 </style>
