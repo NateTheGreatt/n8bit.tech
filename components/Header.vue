@@ -39,8 +39,8 @@ export default {
   <nav class="navbar navbar-default navbar-fixed-top" :class="{'collapsed': collapsed}" v-collapsing-nav="scrollHandle">
     <div class="container">
       <ul class="nav navbar-nav main">
-        <li v-on:click="setFrequencies(300,550)"><nuxt-link to="/">Home</nuxt-link></li>
-        <li v-on:click="setFrequencies(300,390)"><nuxt-link to="/log">Log</nuxt-link></li>
+        <li v-on:click="setFrequencies(300,550)"><nuxt-link to="/">Log</nuxt-link></li>
+        <!-- <li v-on:click="setFrequencies(300,390)"><nuxt-link to="/log">Log</nuxt-link></li> -->
         <li v-on:click="setFrequencies(300,810)"><nuxt-link to="/about">About</nuxt-link></li>
         <!-- <li><nuxt-link to="/lab">Lab</nuxt-link></li> -->
         <!-- <li><nuxt-link to="/portfolio">Portfolio</nuxt-link></li> -->

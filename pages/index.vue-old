@@ -2,10 +2,10 @@
   <section class="container" v-html="html"></section>
 </template>
 <script>
-import md from '../content/pages/about.md'
+import md from '../content/pages/index.md'
 
 export default {
-  name: 'about',
+  name: 'index',
   asyncData (context) {
     return { route: context.route }
   },

@@ -10,8 +10,6 @@ npm-debug.log
 # Nuxt generate
 dist
 
-# firebase
+# Firebase
 .firebaserc
-database.rules.json
 firebase.json
-functions

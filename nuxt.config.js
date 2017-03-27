@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 module.exports = {
   /*
   ** Headers of the page
@@ -37,6 +39,14 @@ module.exports = {
     ** Run ESLINT on save
     */
     extend (config, ctx) {
+      config.module.rules.push({
+        test: /\.md$/,
+        exclude: /(node_modules)/,
+        use: [
+          {loader: 'html-loader'},
+          {loader: 'markdown-loader', options: {}}
+        ]
+      })
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -48,8 +58,9 @@ module.exports = {
     }
   },
   generate: {
-  },
-  router: {
-    middleware: 'marked'
+    routes: function(cb) {
+      var posts = fs.readdirSync('./content/posts')
+      cb(null,posts.map(p => '/log/' + p.split('.')[0]))
+    }
   }
 }

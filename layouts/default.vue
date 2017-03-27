@@ -26,7 +26,7 @@ export default {
 }
 section h1 {
   padding-bottom: 10px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   border-bottom: 1px solid #ddd;
   font-size: 24px;
 }

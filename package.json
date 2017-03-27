@@ -6,9 +6,11 @@
   "private": true,
   "dependencies": {
     "nuxt": "latest",
-    "marked": "*",
-    "axios": "*",
-    "konami-js": "*"
+    "marked": "^0.3.6",
+    "axios": "^0.15.3",
+    "konami-js": "^0.0.2",
+    "koa": "^2.2.0",
+    "koa-route": "^2.2.0"
   },
   "scripts": {
     "dev": "nuxt",
@@ -25,6 +27,9 @@
     "eslint-loader": "^1.6.1",
     "eslint-plugin-html": "^2.0.0",
     "eslint-plugin-promise": "^3.4.1",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "html-loader": "^0.4.5",
+    "markdown-loader": "^2.0.0",
+    "front-matter": "^2.1.2"
   }
 }
