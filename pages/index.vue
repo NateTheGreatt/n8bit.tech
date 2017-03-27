@@ -26,7 +26,7 @@ export default {
   },
   head () {
     return {
-      title: this.route.name
+      title: 'n8bit.tech'
     }
   }
 }
