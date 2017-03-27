@@ -5,12 +5,13 @@
   "author": "Nathaniel Martin <nate.teh.greatt@gmail.com>",
   "private": true,
   "dependencies": {
-    "nuxt": "latest",
-    "marked": "^0.3.6",
     "axios": "^0.15.3",
-    "konami-js": "^0.0.2",
+    "jquery": "^3.2.1",
     "koa": "^2.2.0",
-    "koa-route": "^2.2.0"
+    "koa-route": "^2.2.0",
+    "konami-js": "^0.0.2",
+    "marked": "^0.3.6",
+    "nuxt": "latest"
   },
   "scripts": {
     "dev": "nodemon -w app.js -w nuxt.config.js -w content/posts --ext md app.js",
