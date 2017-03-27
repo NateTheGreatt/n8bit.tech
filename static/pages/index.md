@@ -1,4 +1,0 @@
-Home
-====================
-
-Constructing additional pylons...

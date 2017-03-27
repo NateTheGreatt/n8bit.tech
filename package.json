@@ -13,7 +13,7 @@
     "koa-route": "^2.2.0"
   },
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nodemon -w app.js -w nuxt.config.js app.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -28,6 +28,7 @@
     "eslint-plugin-html": "^2.0.0",
     "eslint-plugin-promise": "^3.4.1",
     "eslint-plugin-standard": "^2.0.1",
+    "nodemon": "^1.11.0",
     "html-loader": "^0.4.5",
     "markdown-loader": "^2.0.0",
     "front-matter": "^2.1.2"
