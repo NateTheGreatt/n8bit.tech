@@ -13,7 +13,7 @@
     "koa-route": "^2.2.0"
   },
   "scripts": {
-    "dev": "nodemon -w app.js -w nuxt.config.js app.js",
+    "dev": "nodemon -w app.js -w nuxt.config.js -w content/posts --ext md app.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

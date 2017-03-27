@@ -1,5 +1,5 @@
 Hello, I'm Nate.
----------------------
+--------------------
 
 By day, a professional **software engineer** who loves **learning** and **problem solving**. Extensive **full-stack** development experience, current languages being **Javascript** and **C#**. I also code in **F#**, **C++**, **Swift**, and **Java**.
 

@@ -11,15 +11,6 @@ config.dev = !(app.env === 'production')
 
 var nuxt = new Nuxt(config)
 
-// Build only in dev mode
-if (config.dev) {
-  nuxt.build()
-  .catch((error) => {
-    console.error(error) // eslint-disable-line no-console
-    process.exit(1)
-  })
-}
-
 // on startup, parse all posts with front-matter
 const dir = './content/posts/'
 const files = fs.readdirSync(dir)
@@ -35,8 +26,16 @@ const posts = files.map((filename) => {
 })
 
 fs.writeFileSync('./content/posts.json', JSON.stringify(posts))
-
 console.log('all posts parsed')
+
+// Build only in dev mode
+if (config.dev) {
+  nuxt.build()
+  .catch((error) => {
+    console.error(error) // eslint-disable-line no-console
+    process.exit(1)
+  })
+}
 
 // API methods
 // app.use(async (ctx, next) => {

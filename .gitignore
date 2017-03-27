@@ -13,3 +13,5 @@ dist
 # Firebase
 .firebaserc
 firebase.json
+
+todo.txt
