@@ -5,6 +5,7 @@ var Nuxt = require('nuxt')
 var fs = require('fs')
 var fm = require('front-matter')
 var md = require('marked')
+var moment = require('moment')
 
 var config = require('./nuxt.config.js')
 config.dev = !(app.env === 'production')
@@ -15,15 +16,23 @@ var nuxt = new Nuxt(config)
 const dir = './content/posts/'
 const files = fs.readdirSync(dir)
 const previewLength = 250
-const posts = files.map((filename) => {
-  const file = fs.readFileSync(dir+filename, {encoding: 'utf8'})
-  var post = fm(file)
-  post.preview = post.body.length > previewLength ? md(post.body.slice(0,250) + '...') : md(post.body)
-  post.body = md(post.body)
-  post.slug = filename.split('.')[0]
-  post.url = '/log/'+post.slug
-  return post
-})
+const posts = files
+  // parse file content with front-matter and marked
+  .map((filename) => {
+    const file = fs.readFileSync(dir+filename, {encoding: 'utf8'})
+    var post = fm(file)
+    post.preview = post.body.length > previewLength
+      ? md(post.body.slice(0,250) + '...')
+      : md(post.body)
+    post.body = md(post.body)
+    post.slug = filename.split('.')[0]
+    post.url = '/log/'+post.slug
+    return post
+  })
+  // sort in chronological order
+  .sort((a,b) => {
+    return moment(a.date).isBefore(moment(b.date))
+  })
 
 fs.writeFileSync('./content/posts.json', JSON.stringify(posts))
 console.log('all posts parsed')

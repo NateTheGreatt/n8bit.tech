@@ -33,6 +33,7 @@
     "koa-route": "^2.2.0",
     "konami-js": "^0.0.2",
     "marked": "^0.3.6",
-    "vue-disqus": "^2.0.2"
+    "vue-disqus": "^2.0.2",
+    "moment": "^2.18.1"
   }
 }

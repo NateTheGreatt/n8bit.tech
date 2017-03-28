@@ -1,8 +1,6 @@
 <template>
   <section class="container">
-    <!-- <h1 class="title">
-      Log
-    </h1> -->
+    <h2>Logs with the tag: {{this.params.name}}</h2>
     <div class="row">
       <div class="col-md-12" v-for="post in posts">
         <h2><nuxt-link v-bind:to="post.url">{{post.attributes.title}}</nuxt-link></h2>
@@ -16,28 +14,27 @@
   </section>
 </template>
 <script>
-import posts from '../content/posts'
+import posts from '../../../content/posts'
 export default {
   name: 'log-index',
-  asyncData ({route}) {
-    return { route }
+  asyncData ({params}) {
+    var relativePosts = posts.filter(p => p.attributes.tags).filter(p => p.attributes.tags.indexOf(params.name) > -1)
+    return { params: params, posts: relativePosts }
   },
   data () {
-    var maxRecent = 5
-    var recentPosts = posts.length > maxRecent
-      ? posts.slice(0, maxRecent)
-      : posts
-    return { posts: recentPosts }
+    return {
+    }
   },
   head () {
     return {
-      title: 'n8bit.tech'
+      title: 'n8bit.tech | Tag ' + this.params.name
     }
   }
 }
 </script>
 
 <style scoped>
+
 a:hover {
   text-decoration: none;
 }
@@ -52,7 +49,4 @@ a:hover {
   margin-top: 10px;
 }
 
-h2 {
-  margin-bottom: 5px;
-}
 </style>
