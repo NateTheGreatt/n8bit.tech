@@ -8,7 +8,7 @@
     "nuxt": "latest"
   },
   "scripts": {
-    "dev": "nodemon -w app.js -w nuxt.config.js -w content/posts --ext md app.js",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -27,6 +27,7 @@
     "html-loader": "^0.4.5",
     "markdown-loader": "^2.0.0",
     "front-matter": "^2.1.2",
+    "front-matter-loader": "^0.1.2",
     "axios": "^0.15.3",
     "jquery": "^3.2.1",
     "koa": "^2.2.0",
@@ -34,6 +35,8 @@
     "konami-js": "^0.0.2",
     "marked": "^0.3.6",
     "vue-disqus": "^2.0.2",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "highlightjs": "^9.10.0",
+    "json-loader": "*"
   }
 }

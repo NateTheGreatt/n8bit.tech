@@ -1,3 +1,7 @@
+---
+title: About
+---
+
 Hello, I'm Nate.
 --------------------
 

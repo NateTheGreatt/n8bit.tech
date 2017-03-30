@@ -20,6 +20,7 @@ module.exports = {
     script:[
       // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
       // { src: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' }
+      // { src: 'https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?autorun=false&skin=desert' }
     ]
   },
   /*
@@ -42,6 +43,11 @@ module.exports = {
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
+      }),
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
       })
     ],
     /*
@@ -52,24 +58,29 @@ module.exports = {
         test: /\.md$/,
         exclude: /(node_modules)/,
         use: [
-          {loader: 'html-loader'},
-          {loader: 'markdown-loader', options: {}}
+          {loader: 'json-loader'},
+          {loader: 'front-matter-loader'}
         ]
       })
       if (ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+        // config.module.rules.push({
+        //   enforce: 'pre',
+        //   test: /\.(js|vue)$/,
+        //   loader: 'eslint-loader',
+        //   exclude: /(node_modules)/
+        // })
       }
     }
   },
+  plugins: [
+    { src: '~plugins/ga.js', ssr: false }
+  ],
   generate: {
     routes: function(cb) {
-      var posts = fs.readdirSync('./content/posts')
-      cb(null,posts.map(p => '/log/' + p.split('.')[0]))
+      var posts = fs.readdirSync('./content/posts').map(p => '/log/' + p.split('.')[0])
+      var drafts = fs.readdirSync('./content/drafts').map(p => '/log/draft/' + p.split('.')[0])
+      var routes = posts.concat(drafts)
+      cb(null, routes)
     }
   }
 }

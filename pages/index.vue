@@ -49,7 +49,7 @@ a:hover {
 }
 
 .post-preview {
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 
 h2 {

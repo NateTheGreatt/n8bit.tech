@@ -33,4 +33,11 @@ section h1 {
 section h2 {
   font-size: 18px;
 }
+p {
+  margin: 1.6em 0;
+  line-height: 1.6em;
+}
+hr {
+  margin: 1.6em 0;
+}
 </style>

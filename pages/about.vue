@@ -1,16 +1,21 @@
 <template>
-  <section class="container" v-html="html"></section>
+  <section class="container">
+    <page :fm="fm"></page>
+  </section>
 </template>
 <script>
-import md from '../content/pages/about.md'
+import Page from '~components/Page'
+
+var req = require.context('../content/pages', true, /^\.\/.*\.md$/)
 
 export default {
   name: 'about',
+  components: { Page },
   asyncData (context) {
-    return { route: context.route }
-  },
-  computed: {
-    html () { return md }
+    return {
+      route: context.route,
+      fm: req('./about.md')
+    }
   },
   head () {
     return {

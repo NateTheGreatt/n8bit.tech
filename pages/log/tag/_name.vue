@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h2>Logs with the tag: {{this.params.name}}</h2>
+    <h1>Log entries with the tag: {{this.params.name}}</h1>
     <div class="row">
       <div class="col-md-12" v-for="post in posts">
         <h2><nuxt-link v-bind:to="post.url">{{post.attributes.title}}</nuxt-link></h2>
