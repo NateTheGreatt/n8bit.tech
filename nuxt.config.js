@@ -1,5 +1,7 @@
 const fs = require('fs')
+const fm = require('front-matter')
 const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   /*
@@ -44,11 +46,8 @@ module.exports = {
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
       }),
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery'
-      })
+      // new BundleAnalyzerPlugin(),
+      // new webpack.optimize.UglifyJsPlugin()
     ],
     /*
     ** Run ESLINT on save
@@ -77,10 +76,24 @@ module.exports = {
   ],
   generate: {
     routes: function(cb) {
-      var posts = fs.readdirSync('./content/posts').map(p => '/log/' + p.split('.')[0])
-      var drafts = fs.readdirSync('./content/drafts').map(p => '/log/draft/' + p.split('.')[0])
-      var routes = posts.concat(drafts)
-      cb(null, routes)
+      var postsDir = './content/posts'
+      var draftsDir = './content/drafts'
+
+      var posts = fs.readdirSync(postsDir)
+      var postRoutes = posts.map(p => '/log/' + p.split('.')[0])
+
+      var tagRoutes = posts
+        .map(p => fm(fs.readFileSync(postsDir+'/'+p,{encoding:'utf8'})).attributes.tags)
+        .filter(tags => tags)
+        .reduce((a,b) => a.concat(b))
+        .map(tag => '/log/tag/'+tag)
+      console.log(tagRoutes)
+
+      var draftRoutes = fs.readdirSync(draftsDir).map(p => '/log/draft/' + p.split('.')[0])
+
+      var allRoutes = postRoutes.concat(draftRoutes).concat(tagRoutes)
+
+      cb(null, allRoutes)
     }
   }
 }

@@ -12,11 +12,6 @@
  width: 960px !important;
 }
 
-a:hover, a:focus, a:visited
-{
-  /*color: #fff;*
-  text-decoration: none;
-}
 
 h1 {
   color: #ccc;
@@ -29,4 +24,9 @@ h1 {
 .page-enter, .page-leave-active
 {
   opacity: 0
+}
+
+a:hover, a:focus, a:visited
+{
+  text-decoration: none;
 }

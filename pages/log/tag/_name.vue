@@ -2,27 +2,41 @@
   <section class="container">
     <h1>Log entries with the tag: {{this.params.name}}</h1>
     <div class="row">
-      <div class="col-md-12" v-for="post in posts">
-        <h2><nuxt-link v-bind:to="post.url">{{post.attributes.title}}</nuxt-link></h2>
-        <small>{{post.attributes.date}}</small>
-        <span v-if="post.attributes.tags"> | <nuxt-link :to="'/log/tag/'+tag" v-for="tag in post.attributes.tags"><span class="label label-success">{{tag}}</span></nuxt-link></span>
-        <div class="post-preview" v-html="post.preview"></div>
-        <nuxt-link v-if="post.body.length > post.preview.length" v-bind:to="post.url">Read more</nuxt-link>
-        <hr />
-      </div>
+      <post-preview v-for="fm in relativePosts" :fm="fm"></post-preview>
     </div>
   </section>
 </template>
 <script>
-import posts from '../../../content/posts'
+import TagList from '~components/TagList'
+import PostPreview from '~components/PostPreview'
+var req = require.context('../../../content/posts', true, /^\.\/.*\.md$/)
+
 export default {
-  name: 'log-index',
+  name: 'tag-index',
+  components: { TagList, PostPreview },
   asyncData ({params}) {
-    var relativePosts = posts.filter(p => p.attributes.tags).filter(p => p.attributes.tags.indexOf(params.name) > -1)
-    return { params: params, posts: relativePosts }
+    return { params }
   },
-  data () {
-    return {
+  computed: {
+    relativePosts () {
+      return req.keys()
+        .map((key) => {
+          var post = req(key)
+          var slug = key.split('/')[1].split('.')[0]
+          return {
+            attributes: post.attributes,
+            slug: slug,
+            body: post.body,
+            url: '/log/' + slug
+          }
+        })
+        .sort((a,b) => {
+          var dateA = new Date(a.attributes.date)
+          var dateB = new Date(b.attributes.date)
+          return dateB - dateA
+        })
+        .filter(post => post.attributes.tags)
+        .filter(post => post.attributes.tags.indexOf(this.params.name) > -1)
     }
   },
   head () {

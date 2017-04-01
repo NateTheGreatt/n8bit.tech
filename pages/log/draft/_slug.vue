@@ -1,26 +1,26 @@
 <template>
   <section class="container">
-    <post :fm="fm"></post>
+    <h1>{{ post.attributes.title }}<div class="date pull-right">{{ post.attributes.date }}</div></h1>
+    <div v-html="html" v-code-prettifier></div>
   </section>
 </template>
 
 <script>
-import 'highlightjs/styles/atom-one-dark.css'
-import Post from '~components/Post.vue'
-// import posts from '../../../content/drafts'
 
 var req = require.context('../../../content/drafts', true, /^\.\/.*\.md$/)
 
 export default {
   name: 'draft-slug',
-  components: { Post },
+  // components: { Post },
+  computed: {
+    html () {
+      return md(this.post.body)
+    }
+  },
   asyncData (context) {
-    // console.log(req('./' + context.params.slug + '.md'))
     return {
       route: context.route,
-      fm: req('./' + context.params.slug + '.md')
-      // post: posts.find(p => p.slug === context.params.slug)
-      // post: marked(require('../../../content/drafts/' + context.params.slug + '.md'))
+      post: req('./' + context.params.slug + '.md')
     }
   }
 }
