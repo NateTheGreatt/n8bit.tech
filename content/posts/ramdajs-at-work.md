@@ -56,7 +56,7 @@ It's time to refactor the function to take a generic type into consideration (wh
 ```
 function groupTypeByProperty(object, type, property) {
   var result = {};
-  var types = object[type]
+  var types = object[type];
 
   types.forEach(function(typeObject) {
     var propValue = typeObject[property];
