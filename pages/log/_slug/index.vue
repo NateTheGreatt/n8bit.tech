@@ -1,8 +1,10 @@
 <template>
   <section class="container">
-    <h1>{{ post.attributes.title }}<div class="metadata pull-right"><post-tag-list :tags="post.attributes.tags"></post-tag-list> | {{ post.attributes.date }}</div></h1>
-    <div v-html="html" v-code-prettifier></div>
-    <vue-disqus shortname="n8bit" :identifier="params.slug" :url="url"></vue-disqus>
+    <div class="col-md-12">
+      <h1>{{ post.attributes.title }}<div class="metadata pull-right"><post-tag-list :tags="post.attributes.tags"></post-tag-list> | {{ post.attributes.date }}</div></h1>
+      <div v-html="html" v-code-prettifier></div>
+      <vue-disqus shortname="n8bit" :identifier="params.slug" :url="url"></vue-disqus>
+    </div>
   </section>
 </template>
 

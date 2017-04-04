@@ -1,5 +1,7 @@
 <template>
-<div v-html="html"></div>
+<div class="col-md-12">
+  <div v-html="html"></div>
+</div>
 </template>
 
 <script>

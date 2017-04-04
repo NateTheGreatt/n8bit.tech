@@ -1,6 +1,8 @@
 <template>
   <section class="container">
-    <div class="row">
+      <div class="col-sm-9" >
+        <post-preview v-for="fm in recentPosts" :fm="fm"></post-preview>
+      </div>
       <div class="col-sm-3 hidden-xs">
         <div class="sidebar">
           <h4>Tags</h4>
@@ -8,10 +10,6 @@
             <li v-for="tag in allTags"><nuxt-link :to="'/log/tag/'+tag">{{tag}}</nuxt-link></li>
           </ol>
         </div>
-      </div>
-      <div class="col-sm-9" >
-        <post-preview v-for="fm in recentPosts" :fm="fm"></post-preview>
-      </div>
     </div>
   </section>
 </template>

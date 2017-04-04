@@ -78,14 +78,14 @@ export default {
 #harmonoscope {
   width: 80px;
   height: 80px;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 #harmonoscope.collapsed {
   width: 50px;
   height: 50px;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 </style>

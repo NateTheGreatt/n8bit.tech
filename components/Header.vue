@@ -62,7 +62,7 @@ export default {
         </button>
       </div>
 
-      <div id="navbar" class="collapse navbar-collapse" v-collapse-on-click>
+      <div id="navbar" class="collapse navbar-collapse" :class="{'collapsed': collapsed}" v-collapse-on-click>
         <ul class="nav navbar-nav main">
           <li v-on:click="setFrequencies(300,550)"><nuxt-link to="/">Log</nuxt-link></li>
           <li v-on:click="setFrequencies(300,810)"><nuxt-link to="/about">About</nuxt-link></li>
@@ -84,8 +84,8 @@ export default {
 nav.navbar {
   height: 100px;
   padding-top: 26px;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 nav.navbar.collapsed {
@@ -93,13 +93,17 @@ nav.navbar.collapsed {
   padding-top: 0px;
 }
 
+.navbar-right {
+  margin-right: 0px;
+}
+
 .center {
   position: absolute;
   left: 50%;
   top: 10px;
   margin-left: -38px;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 .center.collapsed {
   top: 0px;
@@ -131,6 +135,9 @@ nav.navbar.collapsed {
     border-bottom: 1px solid #e7e7e7;
     text-align: right;
     background-color: #f8f8f8;
+  }
+  #navbar.collapsed {
+    top: -1px;
   }
 }
 
