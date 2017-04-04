@@ -1,7 +1,9 @@
 <template>
   <section class="container">
-    <h1>Log entries with the tag: {{this.params.name}}</h1>
-    <post-preview v-for="fm in relativePosts" v-bind:key="fm.slug" :fm="fm"></post-preview>
+    <div class="col-md-12">
+      <h1>Log entries with the tag: {{this.params.name}}</h1>
+      <post-preview v-for="fm in relativePosts" v-bind:key="fm.slug" :fm="fm"></post-preview>
+    </div>
   </section>
 </template>
 <script>
