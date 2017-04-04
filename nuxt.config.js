@@ -45,8 +45,8 @@ module.exports = {
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
-      }),
-      // new BundleAnalyzerPlugin(),
+      })//,
+      // new BundleAnalyzerPlugin()
       // new webpack.optimize.UglifyJsPlugin()
     ],
     /*

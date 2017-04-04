@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h1>{{ post.attributes.title }}<div class="date pull-right"><tag-list :tags="post.attributes.tags"></tag-list> | {{ post.attributes.date }}</div></h1>
+    <h1>{{ post.attributes.title }}<div class="metadata pull-right"><post-tag-list :tags="post.attributes.tags"></post-tag-list> | {{ post.attributes.date }}</div></h1>
     <div v-html="html" v-code-prettifier></div>
     <vue-disqus shortname="n8bit" :identifier="params.slug" :url="url"></vue-disqus>
   </section>
@@ -9,7 +9,7 @@
 <script>
 import md from 'marked'
 import VueDisqus from 'vue-disqus/VueDisqus.vue'
-import TagList from '~components/TagList'
+import PostTagList from '~components/PostTagList'
 import 'highlightjs/styles/atom-one-dark.css'
 import hljs from 'highlightjs/highlight.pack.min.js';
 hljs.configure({languages: ['javascript']})
@@ -17,8 +17,8 @@ hljs.configure({languages: ['javascript']})
 var req = require.context('../../../content/posts', true, /^\.\/.*\.md$/)
 
 export default {
-  name: 'draft-slug',
-  components: { VueDisqus, TagList },
+  name: 'log-slug',
+  components: { VueDisqus, PostTagList },
   computed: {
     html () {
       return md(this.post.body)
@@ -51,18 +51,20 @@ export default {
 </script>
 
 <style>
+h1 {
+  margin-bottom: 20px
+}
 .hljs {
   border-radius: 0;
   padding: 1em!important;
 }
-.date {
+.metadata {
   font-size: 12px;
   color: #ccc;
-  bottom: 0px;
-  display: inline-block;
   margin-top: 11px;
 }
-h1 {
-  margin-bottom: 20px
+.metadata .tag-list a {
+  position: relative;
+  top: -1px;
 }
 </style>

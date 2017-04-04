@@ -9,13 +9,11 @@
 <script>
 import MyHeader from '~components/Header.vue'
 import MyFooter from '~components/Footer.vue'
-import Harmonoscope from '~components/Harmonoscope.vue'
 
 export default {
   components: {
     MyHeader,
-    MyFooter,
-    Harmonoscope
+    MyFooter
   }
 }
 </script>
@@ -24,13 +22,13 @@ export default {
 #__nuxt {
   margin-top: 100px;
 }
-section h1 {
+h1 {
   padding-bottom: 10px;
   /*margin-bottom: 20px;*/
   border-bottom: 1px solid #ddd;
   font-size: 24px;
 }
-section h2 {
+h2 {
   font-size: 18px;
 }
 p {

@@ -1,41 +1,31 @@
 <template>
   <section class="container">
     <div class="row">
-      <post-preview v-for="fm in recentPosts" :fm="fm"></post-preview>
+      <div class="col-sm-3 hidden-xs">
+        <div class="sidebar">
+          <h4>Tags</h4>
+          <ol class="list-unstyled">
+            <li v-for="tag in allTags"><nuxt-link :to="'/log/tag/'+tag">{{tag}}</nuxt-link></li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-9" >
+        <post-preview v-for="fm in recentPosts" :fm="fm"></post-preview>
+      </div>
     </div>
   </section>
 </template>
 <script>
 import md from 'marked'
 import PostPreview from '~components/PostPreview.vue'
+import PostService from '../services/PostService'
 
-var req = require.context('../content/posts', true, /^\.\/.*\.md$/)
 
 export default {
   name: 'log-index',
   components: { PostPreview },
   data () {
-    var maxRecent = 5
-    var previewLength = 250
-    var recentPosts = req.keys()
-      .map((key) => {
-        var post = req(key)
-        var slug = key.split('/')[1].split('.')[0]
-        return {
-          attributes: post.attributes,
-          slug: slug,
-          body: post.body,
-          url: '/log/' + slug
-        }
-      })
-      .sort((a,b) => {
-        var dateA = new Date(a.attributes.date)
-        var dateB = new Date(b.attributes.date)
-        return dateB - dateA
-      })
-      .slice(0,maxRecent)
-
-    return { recentPosts }
+    return { recentPosts: PostService.recentPosts, allTags: PostService.allTags }
   },
   asyncData ({route}) {
     return { route }
@@ -49,6 +39,10 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  margin-bottom: 5px;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -59,11 +53,14 @@ a:hover {
   letter-spacing: 0.1em;
 }
 
-.post-preview {
-  /*margin-top: 10px;*/
+.sidebar {
+  margin-top: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  padding: 10px 15px;
 }
 
-h2 {
-  margin-bottom: 5px;
+.list-unstyled {
+  list-style: none;
 }
 </style>

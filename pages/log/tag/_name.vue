@@ -1,42 +1,22 @@
 <template>
   <section class="container">
     <h1>Log entries with the tag: {{this.params.name}}</h1>
-    <div class="row">
-      <post-preview v-for="fm in relativePosts" :fm="fm"></post-preview>
-    </div>
+    <post-preview v-for="fm in relativePosts" v-bind:key="fm.slug" :fm="fm"></post-preview>
   </section>
 </template>
 <script>
-import TagList from '~components/TagList'
 import PostPreview from '~components/PostPreview'
-var req = require.context('../../../content/posts', true, /^\.\/.*\.md$/)
+import PostService from '../../../services/PostService'
 
 export default {
   name: 'tag-index',
-  components: { TagList, PostPreview },
+  components: { PostPreview },
   asyncData ({params}) {
     return { params }
   },
   computed: {
     relativePosts () {
-      return req.keys()
-        .map((key) => {
-          var post = req(key)
-          var slug = key.split('/')[1].split('.')[0]
-          return {
-            attributes: post.attributes,
-            slug: slug,
-            body: post.body,
-            url: '/log/' + slug
-          }
-        })
-        .sort((a,b) => {
-          var dateA = new Date(a.attributes.date)
-          var dateB = new Date(b.attributes.date)
-          return dateB - dateA
-        })
-        .filter(post => post.attributes.tags)
-        .filter(post => post.attributes.tags.indexOf(this.params.name) > -1)
+      return PostService.findPostsWithTag(this.params.name)
     }
   },
   head () {

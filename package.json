@@ -30,13 +30,12 @@
     "html-loader": "^0.4.5",
     "jquery": "^3.2.1",
     "json-loader": "*",
-    "koa": "^2.2.0",
-    "koa-route": "^2.2.0",
     "konami-js": "^0.0.2",
     "markdown-loader": "^2.0.0",
     "marked": "^0.3.6",
     "moment": "^2.18.1",
     "nodemon": "^1.11.0",
+    "ramda": "^0.23.0",
     "vue-disqus": "^2.0.2",
     "webpack-bundle-analyzer": "^2.3.1"
   }
