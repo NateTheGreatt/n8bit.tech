@@ -22,7 +22,6 @@ let rejectUndefinedTags = R.reject(R.pathEq(tagsPath, undefined))
 let filterByTag = tagName => R.filter(R.pipe(R.path(tagsPath), R.contains(tagName)))
 let sortByDateDesc = R.pipe(R.sortBy(R.pipe(R.path(datePath), d => new Date(d))), R.reverse)
 
-
 // api
 export default {
   recentPosts: R.pipe(sortByDateDesc,R.take(recentPostLimit))(posts),

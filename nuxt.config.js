@@ -49,9 +49,6 @@ module.exports = {
       // new BundleAnalyzerPlugin()
       // new webpack.optimize.UglifyJsPlugin()
     ],
-    /*
-    ** Run ESLINT on save
-    */
     extend (config, ctx) {
       config.module.rules.push({
         test: /\.md$/,
@@ -62,6 +59,9 @@ module.exports = {
         ]
       })
       if (ctx.isClient) {
+        /*
+        ** Run ESLINT on save
+        */
         // config.module.rules.push({
         //   enforce: 'pre',
         //   test: /\.(js|vue)$/,
@@ -87,7 +87,7 @@ module.exports = {
         .filter(tags => tags)
         .reduce((a,b) => a.concat(b))
         .map(tag => '/log/tag/'+tag)
-      console.log(tagRoutes)
+      // console.log(tagRoutes)
 
       var draftRoutes = fs.readdirSync(draftsDir).map(p => '/log/draft/' + p.split('.')[0])
 

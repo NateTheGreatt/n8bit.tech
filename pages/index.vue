@@ -20,7 +20,6 @@ import md from 'marked'
 import PostPreview from '~components/PostPreview.vue'
 import PostService from '../services/PostService'
 
-
 export default {
   name: 'log-index',
   components: { PostPreview },
