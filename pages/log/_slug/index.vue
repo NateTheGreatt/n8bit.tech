@@ -12,11 +12,10 @@
 import md from 'marked'
 import VueDisqus from 'vue-disqus/VueDisqus.vue'
 import PostTagList from '~components/PostTagList'
+import PostService from '../../../services/PostService'
 import 'highlightjs/styles/atom-one-dark.css'
 import hljs from 'highlightjs/highlight.pack.min.js';
 hljs.configure({languages: ['javascript']})
-
-var req = require.context('../../../content/posts', true, /^\.\/.*\.md$/)
 
 export default {
   name: 'log-slug',
@@ -31,7 +30,7 @@ export default {
       route: context.route,
       params: context.params,
       url: 'https://n8bit.tech/log/' + context.params.slug,
-      post: req('./' + context.params.slug + '.md')
+      post: PostService.getPost(context.params.slug)
     }
   },
   directives: {

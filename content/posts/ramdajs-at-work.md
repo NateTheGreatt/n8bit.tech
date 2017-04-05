@@ -1,7 +1,7 @@
 ---
 title: Ramda.js at Work
 date: 3/31/2017
-tags: [javascript, ramda.js, functional programming]
+tags: [javascript, ramda.js, functional programming, partial application]
 ---
 
 I've been learning a lot about functional programming (FP) lately. I found it rather difficult to grasp at first, being so accustomed to object-oriented programming. For this reason, I am sharing an illuminating experience I had recently.
