@@ -32,8 +32,25 @@ let sortByDateDesc = R.pipe(sortByDate, R.reverse)
 
 // api
 export default {
+  
   getPost: slugName => R.find(R.propEq('slug', slugName))(posts),
-  recentPosts: R.pipe(sortByDateDesc,R.take(recentPostLimit))(posts),
-  allTags: R.pipe(mapTags, R.flatten, R.reject(R.isNil), R.uniq)(posts),
-  findPostsWithTag: tagName => R.pipe(rejectUndefinedTags, filterByTag(tagName), sortByDateDesc)(posts)
+
+  recentPosts: R.pipe(
+    sortByDateDesc,
+    R.take(recentPostLimit)
+  )(posts),
+
+  allTags: R.pipe(
+    mapTags,
+    R.flatten,
+    R.reject(R.isNil),
+    R.uniq
+  )(posts),
+
+  findPostsWithTag: tagName => R.pipe(
+    rejectUndefinedTags,
+    filterByTag(tagName),
+    sortByDateDesc
+  )(posts)
+
 }
