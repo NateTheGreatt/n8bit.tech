@@ -1,18 +1,27 @@
 <template>
   <section class="container">
     <div class="col-md-12">
-      <h1>{{ post.attributes.title }}<div class="metadata pull-right"><post-tag-list :tags="post.attributes.tags"></post-tag-list> | {{ post.attributes.date }}</div></h1>
+      <h1>{{ post.attributes.title }}<div class="metadata pull-right">{{ post.attributes.date }}</div></h1>
       <div v-html="html" v-code-prettifier></div>
     </div>
   </section>
 </template>
 
 <script>
-var req = require.context('../../../content/drafts', true, /^\.\/.*\.md$/)
+import md from 'marked'
+import PostTagList from '~components/PostTagList'
+import PostService from '../../../services/PostService'
+import 'highlightjs/styles/atom-one-dark.css'
+import hljs from 'highlightjs/highlight.pack.min.js'
+hljs.configure({languages: ['javascript']})
 
 export default {
   name: 'draft-slug',
   components: { PostTagList },
+  data () {
+    return {
+    }
+  },
   computed: {
     html () {
       return md(this.post.body)
@@ -23,7 +32,7 @@ export default {
       route: context.route,
       params: context.params,
       url: 'https://n8bit.tech/log/' + context.params.slug,
-      post: req('./' + context.params.slug + '.md')
+      post: PostService.getDraft(context.params.slug)
     }
   },
   directives: {
@@ -45,18 +54,20 @@ export default {
 </script>
 
 <style>
+h1 {
+  margin-bottom: 20px
+}
 .hljs {
   border-radius: 0;
   padding: 1em!important;
 }
-.date {
+.metadata {
   font-size: 12px;
   color: #ccc;
-  bottom: 0px;
-  display: inline-block;
   margin-top: 11px;
 }
-h1 {
-  margin-bottom: 20px
+.metadata .tag-list a {
+  position: relative;
+  top: -1px;
 }
 </style>

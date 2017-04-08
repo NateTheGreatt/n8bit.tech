@@ -14,12 +14,16 @@ import VueDisqus from 'vue-disqus/VueDisqus.vue'
 import PostTagList from '~components/PostTagList'
 import PostService from '../../../services/PostService'
 import 'highlightjs/styles/atom-one-dark.css'
-import hljs from 'highlightjs/highlight.pack.min.js';
+import hljs from 'highlightjs/highlight.pack.min.js'
 hljs.configure({languages: ['javascript']})
 
 export default {
   name: 'log-slug',
   components: { VueDisqus, PostTagList },
+  data () {
+    return {
+    }
+  },
   computed: {
     html () {
       return md(this.post.body)

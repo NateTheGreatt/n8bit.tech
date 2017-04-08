@@ -1,9 +1,10 @@
 import R from 'ramda'
-let req = require.context('../content/posts', true, /^\.\/.*\.md$/)
+let postContext = require.context('../content/posts', true, /^\.\/.*\.md$/)
+let draftContext = require.context('../content/drafts', true, /^\.\/.*\.md$/)
 
 let parsePosts = R.map((key) => {
-  let post = req(key)
-  let slug = key.split('/')[1].split('.')[0]
+  let post = postContext(key)
+  var slug = key.split('/')[1].split('.')[0]
   return {
     attributes: post.attributes,
     slug: slug,
@@ -12,7 +13,19 @@ let parsePosts = R.map((key) => {
   }
 })
 
-var posts = parsePosts(req.keys())
+let parseDrafts = R.map((key) => {
+  let draft = draftContext(key)
+  var slug = key.split('/')[1].split('.')[0]
+  return {
+    attributes: draft.attributes,
+    slug: slug,
+    body: draft.body,
+    url: '/log/' + slug
+  }
+})
+
+var posts = parsePosts(postContext.keys())
+var drafts = parseDrafts(draftContext.keys())
 
 // constants
 const recentPostLimit = 5
@@ -30,10 +43,14 @@ let parsedDate = R.pipe(R.path(datePath), d => new Date(d))
 let sortByDate = R.sortBy(parsedDate)
 let sortByDateDesc = R.pipe(sortByDate, R.reverse)
 
+// post partials
+let findPostBySlug = slugName => R.find(R.propEq('slug', slugName))
+
 // api
 export default {
-  
-  getPost: slugName => R.find(R.propEq('slug', slugName))(posts),
+
+  getPost: slugName => findPostBySlug(slugName)(posts),
+  getDraft: slugName => findPostBySlug(slugName)(drafts),
 
   recentPosts: R.pipe(
     sortByDateDesc,

@@ -14,12 +14,7 @@ export default {
   name: 'tag-index',
   components: { PostPreview },
   asyncData ({params}) {
-    return { params }
-  },
-  computed: {
-    relativePosts () {
-      return PostService.findPostsWithTag(this.params.name)
-    }
+    return { params: params, relativePosts: PostService.findPostsWithTag(params.name) }
   },
   head () {
     return {
